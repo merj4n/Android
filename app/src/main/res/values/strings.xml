@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Practica4</string>
+    <string name="add">add</string>
+    <string name="ordenar">Ordenar</string>
+    <string name="acercade">Acerca de…</string>
+    <string name="texto_elche">Ciudad muy bonita del sur de alicante que destaca por sus increibles parques de palmeras por toda la ciudad y su magnífica iglesia y plaza principal de la ciudad. Es necesario visitar su museo para ver la cantidad de civilizaciones que han pasado por la ciudad a lo largo de la historia</string>
+    <string name="provincia">Provincia</string>
+    <string name="poblaci_n">Población</string>
+    <string name="comentarios">Comentarios</string>
+</resources>
