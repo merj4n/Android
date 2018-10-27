@@ -8,12 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class PoblacionesAdapter extends ArrayAdapter<Poblacion> {
-    private ArrayList<Poblacion> poblacionesValoradas;
+    private List<Poblacion> poblacionesValoradas;
 
-    public PoblacionesAdapter(Context context, int resource, ArrayList<Poblacion> lista_poblaciones) {
+    public PoblacionesAdapter(Context context, int resource, List<Poblacion> lista_poblaciones) {
         super(context, resource, lista_poblaciones);
         poblacionesValoradas = lista_poblaciones;
     }
