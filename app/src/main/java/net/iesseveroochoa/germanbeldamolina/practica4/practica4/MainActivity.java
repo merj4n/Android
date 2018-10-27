@@ -19,11 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private PoblacionesAdapter adaptadorLocalidadesValoradas;
     private ListView lsv_LocalidadesValoradas;
     protected static final int REQUEST_CODE_POBLACION=1;
-    private String rc_poblacion;
-    private String rc_provincia;
-    private RatingBar rc_valoracion;
-    private EditText rc_comentario;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
