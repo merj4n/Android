@@ -1,6 +1,7 @@
 package net.iesseveroochoa.germanbeldamolina.practica4.practica4;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -58,8 +59,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this,"Menu ordenar",Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.it_acercade:
-                Intent intent_acercade = new Intent(getApplicationContext(),DialogoAlerta.class);
-                startActivity(intent_acercade);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                DialogoAlerta dialogo = new DialogoAlerta();
+                dialogo.show(fragmentManager, "tagAlerta");
+                //Intent intent_acercade = new Intent(getApplicationContext(),DialogoAlerta.class);
+                //startActivity(intent_acercade);
                 //Toast.makeText(this,"Acerca de...",Toast.LENGTH_SHORT).show();
                 return true;
         }

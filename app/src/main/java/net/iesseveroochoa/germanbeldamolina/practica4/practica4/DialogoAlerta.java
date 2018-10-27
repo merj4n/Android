@@ -17,7 +17,7 @@ public class DialogoAlerta extends DialogFragment {
                 .setTitle("Información")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
+                        // dialog.cancel();
                     }
                 });
 
