@@ -1,16 +1,17 @@
 package net.iesseveroochoa.germanbeldamolina.practica4.practica4;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RatingBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected static final int REQUEST_CODE_POBLACION=1;
     protected static final int REQUEST_CODE_EDIT_POBLACION=2;
     protected static final String EXTRA_POBLACION_EDITAR = "com.teammarro.german.android.poblacion.editar";
+    private static final String STATE_POBLACIONES_VALORADAS = "com.teammarro.german.android.poblacion.girar";
 
     private PoblacionesAdapter adaptadorLocalidadesValoradas;
     private ListView lsv_LocalidadesValoradas;
@@ -37,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
         //Nuevo adaptador de poblaciones para el ArrayList anterior
         adaptadorLocalidadesValoradas=new PoblacionesAdapter (this,R.layout.item_poblacion,lista);
         //Ahora el ListView tiene al adaptador que hemos creado anteriormente
+
+        if(savedInstanceState!= null){
+            List<Poblacion> listaguardada = savedInstanceState.getParcelableArrayList(STATE_POBLACIONES_VALORADAS);
+            adaptadorLocalidadesValoradas = new PoblacionesAdapter(this,R.layout.item_poblacion,listaguardada);
+        }
         lsv_LocalidadesValoradas.setAdapter(adaptadorLocalidadesValoradas);
 
         /**
@@ -49,6 +56,28 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,PoblacionActivity.class);
                 intent.putExtra(EXTRA_POBLACION_EDITAR,adaptadorLocalidadesValoradas.getItem(position));
                 startActivityForResult(intent,REQUEST_CODE_EDIT_POBLACION);
+            }
+        });
+        lsv_LocalidadesValoradas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                adaptadorLocalidadesValoradas.delPoblacion(position);
+                            }
+                        }).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        }).create();
+                dialog.setTitle(getString(R.string.titulodialogo));
+                dialog.setMessage(getResources().getString(R.string.preguntadialog));
+                dialog.setCancelable(false);
+                dialog.show();
+                return true;
             }
         });
     }
@@ -81,6 +110,16 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Recogemos el listado de poblaciones valoradas
+     * @param outState
+     */
+    @Override protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList(STATE_POBLACIONES_VALORADAS,
+                (ArrayList<? extends Parcelable>) adaptadorLocalidadesValoradas.getPoblacionesValoradas());
     }
 
     /**

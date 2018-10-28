@@ -9,4 +9,8 @@
     <string name="comentarios">Comentarios</string>
     <string name="alerta">tagAlerta</string>
     <string name="modifica_poblacion">Modificando</string>
+    <string name="mensajealerta">Práctica4 Germán Belda Molina Licencia cc (Creative Commons)</string>
+    <string name="tituloacercade">Acerca de...</string>
+    <string name="titulodialogo">Borrar Población</string>
+    <string name="preguntadialog">¿Está seguro que desea borrar la población valorada?</string>
 </resources>

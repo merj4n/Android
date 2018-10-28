@@ -13,9 +13,9 @@ public class DialogoAlerta extends DialogFragment {
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(getActivity());
 
-        builder.setMessage("Práctica4\nGermán Belda Molina\nLicencia cc\n(Creative Commons)")
-                .setTitle("Acerca de...")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setMessage(R.string.mensajealerta)
+                .setTitle(R.string.tituloacercade)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 });
