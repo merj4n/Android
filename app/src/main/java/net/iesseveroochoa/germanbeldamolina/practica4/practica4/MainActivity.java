@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -16,21 +18,39 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    protected static final int REQUEST_CODE_POBLACION=1;
+    protected static final int REQUEST_CODE_EDIT_POBLACION=2;
+    protected static final String EXTRA_POBLACION_EDITAR = "com.teammarro.german.android.poblacion.editar";
+
     private PoblacionesAdapter adaptadorLocalidadesValoradas;
     private ListView lsv_LocalidadesValoradas;
-    protected static final int REQUEST_CODE_POBLACION=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //Identifico cual es el listView de las localidades
         lsv_LocalidadesValoradas = findViewById(R.id.lv_lista_poblacion);
-
+        // Creo un ArrrayList que contendra las poblaciones
         List<Poblacion> lista = new ArrayList<>();
+        //Nuevo adaptador de poblaciones para el ArrayList anterior
         adaptadorLocalidadesValoradas=new PoblacionesAdapter (this,R.layout.item_poblacion,lista);
+        //Ahora el ListView tiene al adaptador que hemos creado anteriormente
         lsv_LocalidadesValoradas.setAdapter(adaptadorLocalidadesValoradas);
+
+        /**
+         * Editamos el item de la poblacion sobre la que hemos pulsado
+         */
+
+        lsv_LocalidadesValoradas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this,PoblacionActivity.class);
+                intent.putExtra(EXTRA_POBLACION_EDITAR,adaptadorLocalidadesValoradas.getItem(position));
+                startActivityForResult(intent,REQUEST_CODE_EDIT_POBLACION);
+            }
+        });
     }
 
     /**

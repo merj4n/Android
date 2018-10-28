@@ -3,6 +3,9 @@ package net.iesseveroochoa.germanbeldamolina.practica4.practica4;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+    /**
+    * Constructor de la poblacion
+    */
 public class Poblacion implements Parcelable {
     private String provincia;
     private String localidad;
@@ -48,6 +51,9 @@ public class Poblacion implements Parcelable {
         this.comentarios = comentarios;
     }
 
+    /**
+     * Metodos que implementan el comparable del objeto poblacion
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,6 +72,9 @@ public class Poblacion implements Parcelable {
         return result;
     }
 
+    /**
+     * Metodos creados por la clase parcelable
+     */
     @Override
     public int describeContents() {
         return 0;

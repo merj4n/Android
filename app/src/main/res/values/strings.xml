@@ -8,4 +8,5 @@
     <string name="poblaci_n">Población</string>
     <string name="comentarios">Comentarios</string>
     <string name="alerta">tagAlerta</string>
+    <string name="modifica_poblacion">Modificando</string>
 </resources>
