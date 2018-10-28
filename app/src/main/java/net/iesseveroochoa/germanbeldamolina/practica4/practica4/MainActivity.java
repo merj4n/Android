@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Recojo los valor de poblacion seleccionados en el activity_poblacion y los agrego a la lista.
+     * Recojo los valores de poblacion seleccionados en el activity_poblacion y los agrego a la lista.
      * @param requestCode
      * @param resultCode
      * @param data
@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK){
             if (requestCode == REQUEST_CODE_POBLACION){
                 adaptadorLocalidadesValoradas.addPoblacion((Poblacion) data.getExtras().getParcelable(PoblacionActivity.EXTRA_POBLACION));
+            }else if(requestCode == REQUEST_CODE_EDIT_POBLACION){
+                adaptadorLocalidadesValoradas.editarLocalidad((Poblacion) data.getExtras().getParcelable(PoblacionActivity.EXTRA_POBLACION));
             }
         }
     }

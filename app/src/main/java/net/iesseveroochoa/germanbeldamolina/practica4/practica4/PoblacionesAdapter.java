@@ -62,4 +62,9 @@ public class PoblacionesAdapter extends ArrayAdapter<Poblacion> {
         this.poblacionesValoradas.remove(index);
         notifyDataSetChanged();
     }
+    public void editarLocalidad(Poblacion p){
+        poblacionesValoradas.get(poblacionesValoradas.indexOf(p)).setValoracion(p.getValoracion());
+        poblacionesValoradas.get(poblacionesValoradas.indexOf(p)).setComentarios(p.getComentarios());
+        notifyDataSetChanged();
+    }
 }
