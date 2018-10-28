@@ -1,6 +1,7 @@
 package net.iesseveroochoa.germanbeldamolina.practica4.practica4;
 
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DialogoBorrar.NoticeDialogListener {
 
     protected static final int REQUEST_CODE_POBLACION=1;
     protected static final int REQUEST_CODE_EDIT_POBLACION=2;
@@ -51,6 +52,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent,REQUEST_CODE_EDIT_POBLACION);
             }
         });
+
+        lsv_LocalidadesValoradas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                DialogoBorrar dialogo = new DialogoBorrar();
+                Bundle args = new Bundle();
+                args.putInt("pos", i);
+                dialogo.setArguments(args);
+                dialogo.show(fragmentManager, getString(R.string.borrar));
+                return true;
+            }
+        });
+
+
     }
 
     /**
@@ -101,4 +117,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        adaptadorLocalidadesValoradas.delPoblacion(dialog.getArguments().getInt("pos"));
+    }
 }
