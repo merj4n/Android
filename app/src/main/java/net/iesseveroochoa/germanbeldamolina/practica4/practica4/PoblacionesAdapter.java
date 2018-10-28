@@ -1,6 +1,7 @@
 package net.iesseveroochoa.germanbeldamolina.practica4.practica4;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,14 @@ public class PoblacionesAdapter extends ArrayAdapter<Poblacion> {
         holder.comentarios.setText(this.poblacionesValoradas.get(position).getComentarios());
 
         return item;
+    }
+
+    /**
+     * Devolvemos el listado de poblaciones para el momento de girar la pantalla.
+     * @return poblacionesValoradas
+     */
+    public List<Poblacion> getPoblacionesValoradas() {
+        return poblacionesValoradas;
     }
 
     static class ViewHolder {
